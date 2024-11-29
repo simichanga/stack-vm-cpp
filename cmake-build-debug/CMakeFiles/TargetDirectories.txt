@@ -1,0 +1,4 @@
+/home/simi/Dev/stack-vm-cpp/cmake-build-debug/CMakeFiles/StackVMLib.dir
+/home/simi/Dev/stack-vm-cpp/cmake-build-debug/CMakeFiles/stack_vm.dir
+/home/simi/Dev/stack-vm-cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/simi/Dev/stack-vm-cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

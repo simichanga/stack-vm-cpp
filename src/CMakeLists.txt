@@ -1,11 +1,12 @@
-# Specify the minimum version of CMake required
+# Specify the minimum version of CMake
 cmake_minimum_required(VERSION 3.25)
 
-# Define the project name and language
+# Define the project name
 project(StackVM LANGUAGES CXX)
 
 # Set the C++ standard to C++23
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Create a library from the source files
 add_library(StackVM

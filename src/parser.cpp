@@ -1,4 +1,3 @@
-// parser.cpp
 #include "lexer.h"
 #include <unordered_map>
 
@@ -10,19 +9,19 @@ struct Function {
 
 class Parser {
 public:
-    void parse(const std::vector<Token>& tokens);
+    void parse(const std::vector<TokenInfo>& tokenStream);  // Change to TokenInfo
     std::unordered_map<std::string, Function> functionTable;
 
 private:
     size_t current = 0;
-    Token currentToken() { return tokens[current]; }
+    Token currentToken() { return tokens[current].type; }  // Access the type via TokenInfo
     void advance() { current++; }
     void parseFunction();
     void parseStatements();
-    std::vector<Token> tokens;
+    std::vector<TokenInfo> tokens;  // Change to TokenInfo
 };
 
-void Parser::parse(const std::vector<Token>& tokenStream) {
+void Parser::parse(const std::vector<TokenInfo>& tokenStream) {
     tokens = tokenStream;
     while (current < tokens.size()) {
         if (currentToken() == Token::FUNC) {
@@ -40,7 +39,7 @@ void Parser::parseFunction() {
     std::string funcName;
 
     if (currentToken() == Token::IDENTIFIER) {
-        funcName = "foo";  // Hardcoded for simplicity (you can dynamically assign this)
+        funcName = tokens[current].getValue();  // Use the token value here
         advance(); // Move past the function name
     }
 
@@ -48,9 +47,9 @@ void Parser::parseFunction() {
         advance();  // Skip "("
 
         // Parse parameters (if any)
-        if (currentToken() == Token::VAR) {
+        while (currentToken() == Token::VAR) {
             advance();
-            std::string param = "x";  // Hardcoded parameter (you can dynamically assign this)
+            std::string param = tokens[current].getValue();  // Dynamically get parameter name
             functionTable[funcName].parameters.push_back(param);
             advance();  // Skip the parameter
         }

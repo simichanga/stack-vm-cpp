@@ -16,6 +16,7 @@ add_library(StackVMLib
 
 # Create the executable for the main program
 add_executable(stack_vm src/main.cpp)
+#        tests/parser_tests.cpp)
 
 # Link the StackVMLib library with the executable
 target_link_libraries(stack_vm PRIVATE StackVMLib)

@@ -1,4 +1,3 @@
-// lexer.h
 #ifndef LEXER_H
 #define LEXER_H
 
@@ -19,6 +18,18 @@ enum class Token {
     PLUS,
     END,
     INVALID
+};
+
+// Structure to hold token information
+struct TokenInfo {
+    Token type;   // The type of token (e.g., FUNC, VAR, IDENTIFIER)
+    std::string value;  // The string representation of the token (e.g., function name)
+
+    // Constructor to initialize TokenInfo with a type and value
+    TokenInfo(Token t, const std::string& v) : type(t), value(v) {}
+
+    // Getter function to return the value of the token
+    std::string getValue() const { return value; }
 };
 
 // Function declarations

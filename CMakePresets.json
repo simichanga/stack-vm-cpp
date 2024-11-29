@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "build_and_test",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      },
+      "setupRequired": true
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build_and_test",
+      "binaryDir": "${sourceDir}/build",
+      "configurePreset": "build_and_test",
+      "install": false
+    }
+  ]
+}

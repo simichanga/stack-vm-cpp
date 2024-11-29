@@ -11,8 +11,8 @@ void StackVM::loadProgram(const std::vector<std::pair<Opcode, std::string>>& p) 
 }
 
 void StackVM::execute() {
-    // DEBUG
     std::cout << "Executing program..." << std::endl;
+    ip = 0; // Ensure ip starts at 0
     while (ip < program.size()) {
         executeOpcode(program[ip]);
         ip++;
@@ -22,11 +22,20 @@ void StackVM::execute() {
 void StackVM::executeOpcode(const std::pair<Opcode, std::string>& opcode) {
     switch (opcode.first) {
         case Opcode::PUSH:
-            stack.push_back(opcode.second);
+            stack.push_back(opcode.second);  // Push value onto the stack
         break;
         case Opcode::ADD: {
-            int operand1 = std::stoi(stack.back()); stack.pop_back();
-            int operand2 = std::stoi(stack.back()); stack.pop_back();
+            if (stack.size() < 2) {
+                std::cerr << "Error: Not enough operands for ADD operation" << std::endl;
+                return; // Avoid segmentation fault
+            }
+            // Pop two operands from the stack
+            int operand1 = std::stoi(stack.back());
+            stack.pop_back();
+            int operand2 = std::stoi(stack.back());
+            stack.pop_back();
+
+            // Add operands and push result back onto the stack
             stack.push_back(std::to_string(operand1 + operand2));
             break;
         }
@@ -43,3 +52,4 @@ void StackVM::executeOpcode(const std::pair<Opcode, std::string>& opcode) {
         return;
     }
 }
+
